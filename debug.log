@@ -1,0 +1,5 @@
+[0908/225506.712:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0909/211143.708:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0919/234435.494:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0922/203332.598:ERROR:crash_report_database_win.cc(428)] unexpected header
+[1014/142915.875:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
