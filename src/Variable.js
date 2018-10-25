@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const uuidRegex = /[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/;
 
 export class Variable extends React.Component {
@@ -11,11 +10,9 @@ export class Variable extends React.Component {
         this.handleSuccessesChange = this.handleSuccessesChange.bind(this);
     }
     handlePopChange(event) {
-        console.log('pop')
         this.props.onPopulationChange(event.target.value);
     }
     handleSuccessesChange(event) {
-        console.log('succ')
         this.props.onSuccessesChange(event.target.value);
     }
     render(){
@@ -25,12 +22,12 @@ export class Variable extends React.Component {
             <div>
                 <h2>{this.props.uuid}</h2>
                 <label>
-                Population
+                    Population
                     <input type="number" value={population}
                         onChange={this.handlePopChange}></input>
                 </label>
                 <label>
-                successes
+                    Successes
                     <input type="number" value={successes}
                         onChange={this.handleSuccessesChange}></input>
                 </label>
