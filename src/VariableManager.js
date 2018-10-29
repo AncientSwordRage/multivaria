@@ -49,9 +49,15 @@ class VariableManager extends React.Component {
         this.handleSamplesChange = this.handleSamplesChange.bind(this);
         this.handleSuccessesChangeFactory = this.handleSuccessesChangeFactory.bind(this);
         this.handlePopChangeFactory = this.handlePopChangeFactory.bind(this);
+        this.handleRemoveFactory = this.handleRemoveFactory.bind(this);
         this.addVariable = this.addVariable.bind(this);
     }
-
+    handleRemoveFactory(uuid) {
+        return () => {
+            const remainingVariables = this.state.variables.filter(variable => variable.uuid !== uuid);
+            this.setState({variables: remainingVariables});
+        };
+    }
     /**
      * Updates the population property of a variable
      * 
@@ -62,7 +68,6 @@ class VariableManager extends React.Component {
      */
     handlePopChangeFactory(uuid) {
         return event =>{
-            console.log(`the uuid ${uuid} is being updated with ${event}`);
             const updatedVariables = this.getVariableUpdates(event, uuid, POPULATION);
             const totalVariablePopulation = calcTotalVariablePopulation( updatedVariables );
             if(totalVariablePopulation<=this.state.totalPopulation) {
@@ -146,7 +151,8 @@ class VariableManager extends React.Component {
                         <VariableList 
                             variables={this.state.variables} 
                             onPopulationChangeFactory={this.handlePopChangeFactory}
-                            onSuccessesChangeFactory={this.handleSuccessesChangeFactory}>
+                            onSuccessesChangeFactory={this.handleSuccessesChangeFactory}
+                            onRemoveFactory={this.handleRemoveFactory}>
                         </VariableList>
                     </ul>
                 </div>

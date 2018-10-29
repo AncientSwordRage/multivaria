@@ -14,6 +14,7 @@ export default class VariableList extends React.Component {
                     onPopulationChange={this.props.onPopulationChangeFactory(variable.uuid)}
                     successes={variable.successes}
                     onSuccessesChange={this.props.onSuccessesChangeFactory(variable.uuid)}
+                    onRemove={this.props.onRemoveFactory(variable.uuid)}
                 ></Variable>
             </li>;
         });
@@ -22,6 +23,7 @@ export default class VariableList extends React.Component {
 
 VariableList.propTypes = {
     variables: PropTypes.array.isRequired,
-    onPopulationChangeFactory: PropTypes.func,
-    onSuccessesChangeFactory: PropTypes.func
+    onPopulationChangeFactory: PropTypes.func.isRequired,
+    onSuccessesChangeFactory: PropTypes.func.isRequired,
+    onRemoveFactory: PropTypes.func.isRequired
 };
