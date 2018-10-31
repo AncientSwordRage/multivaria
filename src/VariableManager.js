@@ -14,6 +14,7 @@ function getVariableProperty(uuid, property, variables){
 }
 const POPULATION = 'population';
 const SUCCESSES = 'successes';
+const NAME = 'name';
 const calcTotalVariablePopulation = partial(totalOfProperty, POPULATION);
 /**
  * Makes sure any rules about the variable are upheld
@@ -29,7 +30,7 @@ class VariableManager extends React.Component {
     getVariableUpdates(value, uuid, property) {
         const updatedVariable = Object.assign({},
             this.state.variables.find(variable => variable.uuid === uuid));
-        updatedVariable[property] = parseInt(value, 10);
+        updatedVariable[property] = parseValue(property, value);
         const balancedVariable = balanceVariable(updatedVariable);
         const unchangedVariables = this.state.variables.filter(variable => variable.uuid !== uuid);
         const newVariables = [...unchangedVariables, balancedVariable];
@@ -49,6 +50,7 @@ class VariableManager extends React.Component {
         this.handleSamplesChange = this.handleSamplesChange.bind(this);
         this.handleSuccessesChangeFactory = this.handleSuccessesChangeFactory.bind(this);
         this.handlePopChangeFactory = this.handlePopChangeFactory.bind(this);
+        this.handleNameChangeFactory = this.handleNameChangeFactory.bind(this);
         this.handleRemoveFactory = this.handleRemoveFactory.bind(this);
         this.addVariable = this.addVariable.bind(this);
     }
@@ -84,8 +86,15 @@ class VariableManager extends React.Component {
         return event => {
             const variablePopulation = getVariableProperty(uuid, POPULATION, this.state.variables);
             const value = Math.min(event, variablePopulation);
-            const updatedVariables = this.getVariableUpdates(value, uuid, SUCCESSES);
-            this.setState({variables: updatedVariables});
+            const variables = this.getVariableUpdates(value, uuid, SUCCESSES);
+            this.setState({variables});
+        };
+    }
+    handleNameChangeFactory(uuid) {
+        return data => {
+            console.log(data);
+            const variables = this.getVariableUpdates(data.name, uuid, NAME);
+            this.setState({variables});
         };
     }
     /**
@@ -125,39 +134,48 @@ class VariableManager extends React.Component {
     render() {
         return (
             <section>
-                <div id="population-input">
-                    <label>
-                        <div>
-                            Population size {this.state.totalPopulation}
-                        </div>
-                        <input type="number" value={this.state.totalPopulation} onChange={this.handleTotalPopChange}></input>
-                    </label>
-                </div>
-                <div id="samples-input">
-                    <label>
-                        <div>
-                            Samples {this.state.samples}
-                        </div>
-                        <input type="number" value={this.state.samples} onChange={this.handleSamplesChange}></input>
-                    </label>
-                </div>
-                <div>
-                    <button onClick={this.addVariable}>
-                        Add Variable<FontAwesomeIcon icon="plus"/>
-                    </button>
-                </div>
-                <div>
-                    <ul>
-                        <VariableList 
-                            variables={this.state.variables} 
-                            onPopulationChangeFactory={this.handlePopChangeFactory}
-                            onSuccessesChangeFactory={this.handleSuccessesChangeFactory}
-                            onRemoveFactory={this.handleRemoveFactory}>
-                        </VariableList>
-                    </ul>
-                </div>
+                <section className="card-content management-card">
+                    <div id="population-input">
+                        <label>
+                            <div>
+                                Population size {this.state.totalPopulation}
+                            </div>
+                            <input type="number" value={this.state.totalPopulation} onChange={this.handleTotalPopChange}></input>
+                        </label>
+                    </div>
+                    <div id="samples-input">
+                        <label>
+                            <div>
+                                Samples {this.state.samples}
+                            </div>
+                            <input type="number" value={this.state.samples} onChange={this.handleSamplesChange}></input>
+                        </label>
+                    </div>
+                    <div>
+                        <button onClick={this.addVariable}>
+                            Add Variable<FontAwesomeIcon icon="plus"/>
+                        </button>
+                    </div>
+                </section>
+                <section className="card-content variable-list-card">
+                    <div>
+                        <ul>
+                            <VariableList 
+                                variables={this.state.variables} 
+                                onPopulationChangeFactory={this.handlePopChangeFactory}
+                                onSuccessesChangeFactory={this.handleSuccessesChangeFactory}
+                                onNameChangeFactory={this.handleNameChangeFactory}
+                                onRemoveFactory={this.handleRemoveFactory}
+                            ></VariableList>
+                        </ul>
+                    </div>
+                </section>
             </section>
         );
     }
 }
 export default VariableManager;
+
+function parseValue(property, value) {
+    return [SUCCESSES, POPULATION].includes(property) ? parseInt(value, 10) : value;
+}
