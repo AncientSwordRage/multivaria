@@ -1,3 +1,5 @@
+import { SamplesInput } from './SamplesInput';
+import { PopulationInput } from './PopulationInput';
 import React from 'react';
 import VariableList from './VariableList';
 import { partial } from 'lodash';
@@ -133,31 +135,26 @@ class VariableManager extends React.Component {
     }
     render() {
         return (
-            <section>
-                <section className="card-content management-card">
-                    <div id="population-input">
-                        <label>
-                            <div>
-                                Population size {this.state.totalPopulation}
-                            </div>
-                            <input type="number" value={this.state.totalPopulation} onChange={this.handleTotalPopChange}></input>
-                        </label>
-                    </div>
-                    <div id="samples-input">
-                        <label>
-                            <div>
-                                Samples {this.state.samples}
-                            </div>
-                            <input type="number" value={this.state.samples} onChange={this.handleSamplesChange}></input>
-                        </label>
-                    </div>
+            <section className="grid-card-container">
+                <section className="grid-card-content input-card">
+                    <PopulationInput  
+                        totalPopulation={this.state.totalPopulation}   
+                        handleTotalPopChange={this.handleTotalPopChange}>
+                    </PopulationInput>
+                    <SamplesInput
+                        samples={this.state.samples}
+                        handleSamplesChange={this.handleSamplesChange}>
+                    </SamplesInput>
                     <div>
                         <button onClick={this.addVariable}>
                             Add Variable<FontAwesomeIcon icon="plus"/>
                         </button>
                     </div>
                 </section>
-                <section className="card-content variable-list-card">
+                <section className="grid-card-content stats-card">
+                    <div>Stats go here</div>
+                </section>
+                <section className="grid-card-content variable-list-card">
                     <div>
                         <ul>
                             <VariableList 
