@@ -25,10 +25,63 @@
 .App-intro {
   font-size: large;
 }
-
-section.card-content {
-  display: inline-table;
+.variable-title-header{
+  font-size: 1.5em;
+  font-weight: bold;
 }
+.variable-title-row{
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+.grid-card-container {
+  margin: 20px;
+}
+
+.variable-list-card ul{
+  padding: unset;
+  margin: unset;
+}
+
+.variable-list-card li {
+  list-style: none;
+  border: black solid 1px;
+  border-radius: 3%;
+  margin: 5px 0px;
+  width: 100%;
+  background-color: lightgray;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+/* grid stuff */
+
+section.grid-card-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+     200px  minmax(200px, 400px);
+     grid-template-rows: 1fr 1fr repeat(auto-fill, 1fr);
+  grid-template-areas:
+    "input    list"
+    "stats    list"
+    ".....    list";
+  justify-content: center;
+}
+
+section.grid-card-content.input-card {
+  border: red solid;
+  grid-area: input;
+}
+
+section.grid-card-content.stats-card {
+  border: blue solid;
+  grid-area: stats;
+}
+
+section.grid-card-content.variable-list-card {
+  border: orange solid;
+  grid-area: list;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

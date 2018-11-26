@@ -2,7 +2,6 @@ import React from 'react';
 import {Variable} from './Variable';
 import PropTypes from 'prop-types';
 
-
 export default class VariableList extends React.Component {
     render(){
         return this.props.variables.map(variable => {

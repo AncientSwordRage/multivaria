@@ -29,21 +29,22 @@ export class Variable extends React.Component {
         const {population, successes, uuid, name} = this.props.variable;
         return (
             <div>
-                <header className="variable-title">
-                    <h2>
-                        <InlineEdit
-                            change={this.handleNameChange}
-                            text={name}
-                            paramName="name"
-                        ></InlineEdit><FontAwesomeIcon icon="pen"/>
-                    </h2>
-                    <h4>{uuid}</h4>
-                    <div>
+                <header className="variable-title-header">
+                    <div className="variable-title-row">
                         <label>
-                            Remove Variable
-                            <button onClick={this.handleRemoveSelf}><FontAwesomeIcon icon="trash"/></button>
+                            <button onClick={this.handleRemoveSelf}>
+                                Remove <FontAwesomeIcon icon="trash"/>
+                            </button>
                         </label>
+                        <div className="variable-title">
+                            <InlineEdit
+                                change={this.handleNameChange}
+                                text={name}
+                                paramName="name"
+                            ></InlineEdit><FontAwesomeIcon icon="pen"/>
+                        </div>
                     </div>
+                    <h4>{uuid}</h4>
                 </header>
                 <div>
                     <label>
