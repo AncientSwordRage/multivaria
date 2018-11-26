@@ -1,5 +1,6 @@
 import { SamplesInput } from './SamplesInput';
 import { PopulationInput } from './PopulationInput';
+import StatsPanel from './StatsPanel';
 import React from 'react';
 import VariableList from './VariableList';
 import { partial } from 'lodash';
@@ -152,7 +153,7 @@ class VariableManager extends React.Component {
                     </div>
                 </section>
                 <section className="grid-card-content stats-card">
-                    <div>Stats go here</div>
+                    <StatsPanel variables={this.state.variables}></StatsPanel>
                 </section>
                 <section className="grid-card-content variable-list-card">
                     <div>

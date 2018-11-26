@@ -25,6 +25,22 @@
 .App-intro {
   font-size: large;
 }
+.variable-title-header{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.variable-title-row{
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+.grid-card-container {
+  margin: 20px;
+}
+
+.variable-list-card ul{
+  padding: unset;
+  margin: unset;
+}
 
 .variable-list-card li {
   list-style: none;
@@ -43,12 +59,12 @@ section.grid-card-container {
   grid-gap: 1rem;
   grid-template-columns: 
      200px  minmax(200px, 400px);
-  justify-content: center;
-  grid-template-rows: 1fr 1fr repeat(auto-fill, 1fr);
+     grid-template-rows: 1fr 1fr repeat(auto-fill, 1fr);
   grid-template-areas:
     "input    list"
     "stats    list"
     ".....    list";
+  justify-content: center;
 }
 
 section.grid-card-content.input-card {
@@ -64,7 +80,6 @@ section.grid-card-content.stats-card {
 section.grid-card-content.variable-list-card {
   border: orange solid;
   grid-area: list;
-
 }
 
 
