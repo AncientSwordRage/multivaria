@@ -13,7 +13,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-edit-inline2": "^1.0.2",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^2.1.1",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -23,6 +23,13 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint": "^5.8.0"
-  }
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
