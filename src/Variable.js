@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InlineEdit from 'react-edit-inline2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const uuidRegex = /[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/;
+import { uuidProp } from './uuidProp';
 
 export class Variable extends React.Component {
     constructor(props) {
@@ -46,23 +45,25 @@ export class Variable extends React.Component {
                     </div>
                     <h4>{uuid}</h4>
                 </header>
-                <div>
-                    <label>
-                        Population
-                        <input type="number" value={population}
-                            onChange={this.handlePopChange}></input>
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Successes
-                        <input type="number" value={successes}
-                            onChange={this.handleSuccessesChange}></input>
-                    </label>
-                </div>
-                <div>
+                <main>
+                    <div>
+                        <label>
+                            Population
+                            <input type="number" value={population}
+                                onChange={this.handlePopChange}></input>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Successes
+                            <input type="number" value={successes}
+                                onChange={this.handleSuccessesChange}></input>
+                        </label>
+                    </div>
+                </main>
+                <footer>
                     Calculating {successes} successes for Population! {population}
-                </div>
+                </footer>
             </div>);
     }
 }
@@ -72,12 +73,11 @@ Variable.propTypes = {
     onRemove: PropTypes.func.isRequired,
     onNameChange: PropTypes.func.isRequired,
     variable: PropTypes.exact({
-        'uuid': (props, propname, componentName) => {
-            const errorText = `Invalid prop ${propname} supplied to ${componentName}. Validation failed.`;
-            return !uuidRegex.test(props[propname]) ? new Error(errorText): '';
-        },
+        'uuid': uuidProp(),
         'population': PropTypes.number.isRequired,
         'successes': PropTypes.number.isRequired,
         'name': PropTypes.string
     })
 };
+
+

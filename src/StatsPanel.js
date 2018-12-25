@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default props => {
-    console.log(Object.keys(props));
     const total = variable => props.variables.reduce((total, current)=>total + current[variable], 0);
     const StatsPanel = (
         <div>
