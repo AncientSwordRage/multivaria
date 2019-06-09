@@ -13,7 +13,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-edit-inline2": "^1.0.2",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^3.0.1",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -24,5 +24,17 @@
   },
   "devDependencies": {
     "eslint": "^5.8.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
